@@ -1,0 +1,76 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+
+/* exsol */
+
+.ex, .sol {
+  padding: 1em 1em 1em 1em;
+  margin-bottom: 10px;
+}
+
+.ex {
+  background-color: #f7f7f7;
+}
+
+.sol {
+  background-color: white;
+}
+
+.ex::before {
+  counter-increment: exno;
+  font-weight: bold;
+  content: "Problema " attr(number);
+  display: inline;
+}
+
+.sol-header {
+    font-weight: bold;
+}
+
+.parts {
+  counter-reset: itemno;
+}
+
+.item {
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 2ex;
+}
+
+
+.item::before{
+  counter-increment: itemno;
+  content: "(" counter(itemno, lower-alpha) ")";
+}
+
+
+/* higlight */
+
+.hl.kwd {
+  color: rgb(33, 73, 135);
+}
+
+.hl.num {
+  color: rgb(64, 160, 112);
+}
+
+.sourceCode.r::before, .sourceCode.r .ot {
+  color: #7d9029;
+}
+
+.sourceCode.r .st {
+  color: #4070a0;
+}

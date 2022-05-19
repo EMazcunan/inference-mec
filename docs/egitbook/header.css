@@ -1,0 +1,163 @@
+.book .body-inner {
+    top:0!important;
+}
+
+
+/* TOOLBAR .book-header */
+
+.book-header.fixed h1 {
+    display:none!important;
+}
+
+
+/* Sin summary (sidebar cerrada) */
+
+
+.book .book-header.fixed {
+    width: 50px!important;
+    /*border: 1px solid red;*/
+}
+
+
+.book .book-header.fixed .btn[title="Search"], .book .book-header.fixed .btn[title="Font Settings"], .book .book-header.fixed .btn[title="PDF"], .book .book-header.fixed .btn[title="Information about the toolbar"], .book .book-header.fixed .btn[title="Github"]{
+    /*display:none!important;*/
+    visibility: hidden!important;
+    -webkit-transition:visibility 0ms 0ms;
+    -moz-transition:visibility 0ms 0ms;
+    -o-transition:visibility 0ms 0ms;
+    transition:visibility 0ms 0ms;
+}
+
+
+
+/* Con summary (sidebar abierta) */
+
+
+.book.with-summary .book-header.fixed {
+    left:0!important;
+    width: 300px!important;
+    background: #fafafa!important;
+    border-right: 1px solid rgba(0,0,0,0.07);
+    top:0;
+    z-index:1;
+    -webkit-transition:width 250ms ease;
+    -moz-transition:width 250ms ease;
+    -o-transition:width 250ms ease;
+    transition:width 250ms ease;
+}
+
+
+.book.with-summary .book-header.fixed .btn[title="Search"], .book.with-summary .book-header.fixed .btn[title="Font Settings"], .book.with-summary .book-header.fixed .btn[title="PDF"], .book.with-summary .book-header.fixed .btn[title="Information about the toolbar"], .book.with-summary .book-header.fixed .btn[title="Github"]{
+    /*display:block!important;*/
+    visibility: visible!important;
+    -webkit-transition:visibility 0ms 250ms;
+    -moz-transition:visibility 0ms 250ms;
+    -o-transition:visibility 0ms 250ms;
+    transition:visibility 0ms 250ms;
+}
+
+
+
+/* SIDEBAR .book-summary (plantilla personal ln_gitbook.hml) */
+
+
+
+.book .book-summary {
+    display:none!important;
+}
+
+.book.with-summary .book-summary {
+    /*visibility: visible!important;*/
+    /*margin-left: 0!important;*/
+    top:50px!important;
+    display: flex!important;
+    flex-flow: column;
+    height:cal( 100% - 50px)!important;
+}
+
+
+.book-summary .book-summary-header, .book.with-summary .book-summary .summary-header  {
+    /*display:none!important;*/
+    opacity:0;
+    left:-300px!important;
+}
+
+.book.with-summary .book-summary .book-summary-header, .book.with-summary .book-summary .summary-header  {
+    opacity: 1;
+    /*display:block!important;*/
+    left:0!important;
+    background: #f1f1f1;
+    padding:10px!important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    font-weight:bold;
+}
+
+.book.with-summary .book-summary .book-summary-header {
+    order:1;
+}
+
+.book.with-summary .book-summary .summary-header {
+    order:2;
+    text-align: center;
+}
+
+.book.with-summary .book-summary .book-summary-header a {
+    color: inherit;
+    text-align: center;
+}
+
+.book.with-summary .book-summary .book-summary-header a:hover {
+    color: #008cff;
+}
+
+
+.book-search {
+    order:3;
+    position:relative!important;
+    display:none;
+}
+
+.book.with-search .book-search {
+    display: block!important;
+}
+
+
+.book.with-search .book-summary ul.summary {
+    top: 0px!important;
+}
+
+
+.book.with-summary .book-summary nav {
+    background: #fafafa;
+    position:relative!important;
+    top:0;
+    order: 3;
+    flex: 2!important;
+    /*overflow: auto!important;*/
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.book-summary .book-summary-foot {
+    opacity: 0;
+}
+
+.book.with-summary .book-summary .book-summary-foot {
+    padding:10px!important;
+    background: #f1f1f1;
+    order:5;
+    opacity: 0.8;
+}
+
+.book.with-summary .book-summary .book-summary-foot a {
+    color: inherit;
+}
+
+.book.with-summary .book-summary .book-summary-foot a:hover {
+    color: #008cff;
+}
+
+
+.book.with-summary .book-summary nav .summary li.divider {
+    display:none!important;
+}
+

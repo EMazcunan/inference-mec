@@ -1,0 +1,18 @@
+.TODO {
+    color: red;
+    position:relative;
+}
+
+.TODO::before {
+    content: "TODO";
+    position: absolute!important;
+    left: 100%;
+    margin-left:5px;
+    padding: 0 5px 0 5px;
+    border-top: 2px solid red;
+    border-bottom: 2px solid red;
+}
+
+section {
+    overflow:visible!important;
+}

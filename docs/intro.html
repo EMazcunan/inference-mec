@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="" >
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introducción | Inferencia estadística</title>
+  <meta name="description" content="Introducción | Inferencia estadística" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introducción | Inferencia estadística" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="EMazcunan/2021-inference-mec" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introducción | Inferencia estadística" />
+  
+  
+  
+
+<meta name="author" content="Eva María Mazcuñán Navarro" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="descriptive.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!--
+Material Icons
+https://fonts.google.com/icons
+https://developers.google.com/fonts/docs/material_icons
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<span class="math inline" style="display: none;">
+    \(\newcommand{\ve}{\varepsilon}\)
+</span>
+<span class="math inline", style="display: none;">
+\(\)
+\(\)
+\(\)
+\(\)
+\(\)
+\(\)
+\(\)
+\(\)
+\(\)
+\(\)
+\(\)
+\(\)
+\(\)
+\(\)
+\(\)
+\(\newcommand{\DecValTok}[1]{\require{textmacros}\require{color}\textcolor[RGB]{64, 160, 112}{\texttt{#1}}}\)
+\(\newcommand{\KeywordTok}[1]{\require{textmacros}\require{color}\textcolor[rgb]{0.13,0.29,0.53}{\texttt{#1}}}\)
+\(\newcommand{\NormalTok}[1]{#1}\)
+</span>
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="egitbook/chunks.css" type="text/css" />
+<link rel="stylesheet" href="egitbook/header.css" type="text/css" />
+<link rel="stylesheet" href="egitbook/latex.css" type="text/css" />
+<link rel="stylesheet" href="egitbook/enotation.css" type="text/css" />
+<link rel="stylesheet" href="egitbook/ebox.css" type="text/css" />
+<link rel="stylesheet" href="egitbook/emargintag.css" type="text/css" />
+<link rel="stylesheet" href="egitbook/emedia.css" type="text/css" />
+<link rel="stylesheet" href="egitbook/ln.css" type="text/css" />
+<link rel="stylesheet" href="egitbook/style.css" type="text/css" />
+</head>
+
+<body onload="document.querySelector('.page-inner').removeAttribute('style');">
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <div class="book-summary-header">
+          <a href="index.html">
+<div class="book-summary-pretitle">TEMA 8</div>
+<div class="book-summary-title">Inferencia estadística</div>
+        </a>
+      </div>
+      <div class="summary-header">
+<div> CONTENIDOS </div>
+      </div>
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" style="display:none;padding:0!important;">
+    <a style="display:none;padding:0!important;" href="index.html"></a>
+</li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i>Introducción</a></li>
+<li class="chapter" data-level="1" data-path="descriptive.html"><a href="descriptive.html"><i class="fa fa-check"></i><b>1</b> Estadística descriptiva</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="point.html"><a href="point.html"><i class="fa fa-check"></i><b>1.1</b> Estimación puntual</a></li>
+<li class="chapter" data-level="1.2" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>1.2</b> Gráficos</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hypothesis.html"><a href="hypothesis.html"><i class="fa fa-check"></i><b>2</b> Contrastes de hipótesis</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="planteamiento-de-las-hipótesis.html"><a href="planteamiento-de-las-hipótesis.html"><i class="fa fa-check"></i><b>2.1</b> Planteamiento de las hipótesis</a></li>
+<li class="chapter" data-level="2.2" data-path="cálculo-del-p-valor.html"><a href="cálculo-del-p-valor.html"><i class="fa fa-check"></i><b>2.2</b> Cálculo del p-valor</a></li>
+<li class="chapter" data-level="2.3" data-path="conclusión.html"><a href="conclusión.html"><i class="fa fa-check"></i><b>2.3</b> Conclusión</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="conf-int.html"><a href="conf-int.html"><i class="fa fa-check"></i><b>3</b> Intervalos de confianza</a></li>
+<li class="chapter" data-level="" data-path="problema-tipo-examen.html"><a href="problema-tipo-examen.html"><i class="fa fa-check"></i>Problema <em>tipo examen</em></a></li>
+<li class="divider"></li>
+</ul>
+
+      </nav>
+      <div class="book-summary-foot">
+<p>
+    Creado con <a href="https://bookdown.org/yihui/bookdown/" target="blank">bookdown</a>
+</p>
+<p>
+    Publicado con <a href="https://pages.github.com/" target="blank">GitHub Pages</a>
+</p>
+      </div>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Inferencia estadística</a>
+          </h1>
+        </div>
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div style="opacity:0;" class="page-inner">
+
+            <section class="normal" id="section-">
+
+<div id="intro" class="section level1 unnumbered hasAnchor">
+<h1>Introducción<a href="intro.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:dilbert"></span>
+<img src="graficos/dilbertc.png" alt="Viñeta de la tira cómica Dilbert, de Scott Adams." width="100%" />
+<p class="caption">
+Figura 1: Viñeta de la tira cómica <em>Dilbert</em>, de Scott Adams.
+</p>
+</div>
+
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lie"></span>
+<img src="graficos/HowToLieWithStatistics4.jpg" alt="Portada del libro How to Lie with Statistics, de Darrell Huff." width="70%" />
+<p class="caption">
+Figura 2: Portada del libro <em>How to Lie with Statistics</em>, de Darrell Huff.
+</p>
+</div>
+<p>Hasta ahora hemos realizado un estudio teórico de las variables aleatorias. Y hemos aprendido a resolver problemas como el siguiente:</p>
+<div class="ebox">
+<p>Sabemos que, para un determinado jugador de baloncesto, la probabilidad con que acierta un lanzamiento de tiro libre es <span class="math inline">\(0.75\)</span>.</p>
+<p>Calcula la probabilidad de que, en una tanda de <span class="math inline">\(50\)</span> lanzamientos, acierte como máximo <span class="math inline">\(30\)</span> de ellos.</p>
+</div>
+<p>Para resolver el problema anterior, consideramos la variable aleatoria</p>
+<div class="center">
+<p><span class="math inline">\(X =\)</span> número de lanzamientos acertados.</p>
+</div>
+<p>Identificamos que <span class="math inline">\(X\)</span> sigue una distribución binomial de parámetros <span class="math inline">\(n=50\)</span> y <span class="math inline">\(p=0.75\)</span>, abreviadamente <span class="math display">\[X\sim Binom(50,0.75),\]</span> y calculamos la probabilidad pedida como</p>
+<p><span class="math display">\[
+  P(X\le 30) = F(30) =  \KeywordTok{pbinom}\NormalTok{(}\DecValTok{30}\NormalTok{,} \DecValTok{50}\NormalTok{,} \DecValTok{0.75}\NormalTok{)} = 0.0139.
+\]</span></p>
+<p>Ahora, en una situación real, lo más frecuente es que no conozcamos el valor <span class="math inline">\(p=0.75\)</span> para la probabilidad de acierto del jugador en el lanzamiento de tiros libres. Porque este valor <span class="math inline">\(p\)</span> es un parámetro teórico, que interpretamos como la proporción de aciertos del jugador cuando el número de lanzamientos tiende a infinito. Para obtener el valor de <span class="math inline">\(p\)</span> deberíamos observar los infinitos potenciales lanzamientos que podría efectuar el lanzador, situación imposible en la práctica. En consecuencia, el tipo de problema que se plantea en la práctica es más parecido al siguiente:</p>
+<div class="ex" number="1">
+<p>Nos planteamos investigar el valor del parámetro</p>
+<div class="center">
+<p><span class="math inline"><span class="math inline">\(p =\)</span></span> probabilidad de que el jugador acierte un tiro libre.</p>
+</div>
+<p>Para ello, observamos el resultado de <span class="math inline">\(50\)</span> lanzamientos efectuados por el jugador en cuestión, anotando en cada caso si acierta o falla. Se obtienen <span class="math inline">\(28\)</span> aciertos y <span class="math inline">\(22\)</span> fallos.</p>
+<p>El objetivo es realizar inferencias sobre el parámetro <span class="math inline">\(p\)</span> basándonos en los resultados de los lanzamientos observados. Queremos en concreto responder a las siguientes cuestiones:</p>
+<ul>
+<li><p>El jugador afirma que su probabilidad de acertar un tiro libre es <span class="math inline">\(0.75\)</span> ¿resultan los datos compatibles con esta afirmación?</p></li>
+<li><p>A la vista de los datos ¿cuál sería un rango de valores plausibles para la probabilidad <span class="math inline">\(p\)</span>?</p></li>
+</ul>
+</div>
+<p>En este tema estudiaremos los procedimientos de inferencia estadística que permitirán responder a las preguntas anteriores. Responderemos a la primera pregunta utilizando un procedimiento de inferencia estadística denominado <strong>contraste de hipótesis</strong> (sección <a href="hypothesis.html#hypothesis">2</a>) y abordaremos la segunda cuestión construyendo un <strong>intervalo de confianza</strong> (sección <a href="conf-int.html#conf-int">3</a>).</p>
+<p>En general, un procedimiento de inferencia estadística es un método o técnica que permite inferir, a partir de la información empírica proporcionada por una muestra (en nuestro ejemplo los aciertos observados en <span class="math inline">\(50\)</span> lanzamientos), el comportamiento de una determinada población (en nuestro ejemplo la probabilidad de acierto <span class="math inline">\(p\)</span>). Las conclusiones de un procedimiento de inferencia estadística nunca serán afirmaciones categóricas, sino que estarán sujetas a un riesgo de error, que se cuantifica en términos de probabilidades (ver figuras <a href="intro.html#fig:dilbert">1</a> y <a href="intro.html#fig:lie">2</a>).</p>
+<p>Presentaremos el comando de <span class="textsf">R</span> <code class="sourceCode r"><span class="fu">binom.test</span>()</code> para realizar el contraste de hipótesis y obtener el intervalo de confianza para la proporción <span class="math inline">\(p\)</span> que responderán a las preguntas planteadas antes. Basándonos en nuestro conocimiento de las variables binomiales estudiadas en el tema anterior, seremos capaces de reproducir los cálculos que realiza este comando. De esta forma, podremos entender los fundamentos generales de los contrastes de hipótesis y los intervalos de confianza.</p>
+<p>En la última práctica de ordenador del curso, estudiaremos más comandos de <span class="textsf">R</span> para realizar contrastes de hipótesis y calcular intervalos de confianza para otros parámetros, como la media de una variable continua. Gracias a lo aprendido en este tema, sabremos interpretar las salidas de dichos comandos, aún sin conocer el detalle de los cálculos realizados para obtenerlas.</p>
+
+</div>
+<script src="egitbook/js/sols.js"></script>
+<!-- Este script está a medias.
+Actualmente el numerado de los problemas lo hace el css de ex::before en style.css.
+Con CSS es muy fácil, pero tiene inconvenientes:
+1. Hay que inicizlizar el contador `exno` a mano (en preamble.Rmd)
+2. En cada fenced block de ex hay que incluir number=`r exno <- exno + 1; exno` (a lo mejor esto hay que hacerlo igual para exs.js)
+<script src="egitbook/js/exs.js"></script>
+-->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="descriptive.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": null
+},
+"fontsettings": null,
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["T8-Inferencia.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+
+</body>
+
+</html>

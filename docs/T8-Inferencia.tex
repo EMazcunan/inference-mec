@@ -1,0 +1,517 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  notoc,
+  nobib,
+  degree=mec]{mnye}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Inferencia estadística},
+  pdfauthor={Eva María Mazcuñán Navarro},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{ehyperref}
+\colorlet{etoccolor}{greenlink}
+% This file is created the first time epdf_document is invoked
+% but will not be overwriten afterwards.
+%
+% Preamble
+
+\usepackage{ebox}
+\usepackage{enotation}
+\usepackage{fontawesome}
+
+% https://stackoverflow.com/questions/63222203/rmarkdown-wrap-code-in-chunks-but-keep-breaks-after-pipe
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+    breaksymbolleft={},
+    showspaces = false,
+    showtabs = false,
+    breaklines,
+    commandchars=\\\{\}
+}
+
+\pgfplotsset{compat=1.18}
+
+
+\renewcommand\cfttocprehook{
+%     \cleardoublepage%
+    \pagenumbering{roman}%
+    \pagestyle{plain}%
+}
+
+\renewcommand\cfttocposthook{
+    \cleardoublepage%
+    \pagenumbering{arabic}%
+    \pagestyle{main}%
+}
+
+% highr::hi_latex(..., markup = cmd_pandoc_latex)
+% `...`{.R}
+\renewcommand{\DecValTok}[1]{\textcolor[RGB]{64, 160, 112}{\texttt{#1}}}
+\renewcommand{\FloatTok}[1]{\textcolor[RGB]{64, 160, 112}{\texttt{#1}}}
+\renewcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\texttt{#1}}}
+\renewcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\texttt{#1}}}
+\renewcommand{\NormalTok}[1]{\texttt{#1}}
+\pretitle{TEMA 8}
+\degree{mec}
+\term{2021-2022}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{biblatex}
+\addbibresource{bib/book.bib}
+\addbibresource{bib/packages.bib}
+\addbibresource{bib/Estadistica.bib}
+
+\title{Inferencia estadística}
+\author{Eva María Mazcuñán Navarro}
+\date{}
+
+\begin{document}
+\maketitle
+
+% This file is created the first time epdf_document is invoked
+% but will not be overwriten afterwards.
+%
+% Before Body
+
+{
+\hypersetup{linkcolor=etoccolor}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{section}{%
+\section*{}\label{section}}
+
+\hypertarget{intro}{%
+\section*{Introducción}\label{intro}}
+\addcontentsline{toc}{section}{Introducción}
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{graficos/dilbertc} 
+
+}
+
+\caption{Viñeta de la tira cómica \emph{Dilbert}, de Scott Adams.}\label{fig:dilbert}
+\end{figure}
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{graficos/HowToLieWithStatistics4} 
+
+}
+
+\caption{Portada del libro \emph{How to Lie with Statistics}, de Darrell Huff.}\label{fig:lie}
+\end{figure}
+
+Hasta ahora hemos realizado un estudio teórico de las variables aleatorias. Y hemos aprendido a resolver problemas como el siguiente:
+
+\begin{ebox}{}
+Sabemos que, para un determinado jugador de baloncesto, la probabilidad con que acierta un lanzamiento de tiro libre es \(0.75\).
+
+Calcula la probabilidad de que, en una tanda de \(50\) lanzamientos, acierte como máximo \(30\) de ellos.
+
+\end{ebox}
+
+Para resolver el problema anterior, consideramos la variable aleatoria
+
+\begin{center}
+\(X =\) número de lanzamientos acertados.
+
+\end{center}
+
+Identificamos que \(X\) sigue una distribución binomial de parámetros \(n=50\) y \(p=0.75\), abreviadamente \[X\sim Binom(50,0.75),\] y calculamos la probabilidad pedida como
+
+\[
+  P(X\le 30) = F(30) =  \KeywordTok{pbinom}\NormalTok{(}\DecValTok{30}\NormalTok{,} \DecValTok{50}\NormalTok{,} \DecValTok{0.75}\NormalTok{)} = 0.0139.
+\]
+
+Ahora, en una situación real, lo más frecuente es que no conozcamos el valor \(p=0.75\) para la probabilidad de acierto del jugador en el lanzamiento de tiros libres. Porque este valor \(p\) es un parámetro teórico, que interpretamos como la proporción de aciertos del jugador cuando el número de lanzamientos tiende a infinito. Para obtener el valor de \(p\) deberíamos observar los infinitos potenciales lanzamientos que podría efectuar el lanzador, situación imposible en la práctica. En consecuencia, el tipo de problema que se plantea en la práctica es más parecido al siguiente:
+
+\begin{ex}
+
+Nos planteamos investigar el valor del parámetro
+
+\begin{center}{}
+{\(p =\)} probabilidad de que el jugador acierte un tiro libre.
+
+\end{center}
+
+Para ello, observamos el resultado de \(50\) lanzamientos efectuados por el jugador en cuestión, anotando en cada caso si acierta o falla. Se obtienen \(28\) aciertos y \(22\) fallos.
+
+El objetivo es realizar inferencias sobre el parámetro \(p\) basándonos en los resultados de los lanzamientos observados. Queremos en concreto responder a las siguientes cuestiones:
+
+\begin{itemize}
+\item
+  El jugador afirma que su probabilidad de acertar un tiro libre es \(0.75\) ¿resultan los datos compatibles con esta afirmación?
+\item
+  A la vista de los datos ¿cuál sería un rango de valores plausibles para la probabilidad \(p\)?
+\end{itemize}
+
+\end{ex}
+
+En este tema estudiaremos los procedimientos de inferencia estadística que permitirán responder a las preguntas anteriores. Responderemos a la primera pregunta utilizando un procedimiento de inferencia estadística denominado \textbf{contraste de hipótesis} (sección \ref{hypothesis}) y abordaremos la segunda cuestión construyendo un \textbf{intervalo de confianza} (sección \ref{conf-int}).
+
+En general, un procedimiento de inferencia estadística es un método o técnica que permite inferir, a partir de la información empírica proporcionada por una muestra (en nuestro ejemplo los aciertos observados en \(50\) lanzamientos), el comportamiento de una determinada población (en nuestro ejemplo la probabilidad de acierto \(p\)). Las conclusiones de un procedimiento de inferencia estadística nunca serán afirmaciones categóricas, sino que estarán sujetas a un riesgo de error, que se cuantifica en términos de probabilidades (ver figuras \ref{fig:dilbert} y \ref{fig:lie}).
+
+Presentaremos el comando de \textsf{R} \VERB|\FunctionTok{binom.test}\NormalTok{()}| para realizar el contraste de hipótesis y obtener el intervalo de confianza para la proporción \(p\) que responderán a las preguntas planteadas antes. Basándonos en nuestro conocimiento de las variables binomiales estudiadas en el tema anterior, seremos capaces de reproducir los cálculos que realiza este comando. De esta forma, podremos entender los fundamentos generales de los contrastes de hipótesis y los intervalos de confianza.
+
+En la última práctica de ordenador del curso, estudiaremos más comandos de \textsf{R} para realizar contrastes de hipótesis y calcular intervalos de confianza para otros parámetros, como la media de una variable continua. Gracias a lo aprendido en este tema, sabremos interpretar las salidas de dichos comandos, aún sin conocer el detalle de los cálculos realizados para obtenerlas.
+
+\hypertarget{descriptive}{%
+\section{Estadística descriptiva}\label{descriptive}}
+
+Todo estudio estadístico comienza con una exploración inicial de los datos obtenidos, que habitualmente incluye el cálculo determinados valores de interés que resumen o describen los datos, y la visualización de los datos mediante los gráficos adecuados en cada caso.
+
+Para nuestro ejemplo calcularemos la llamada proporción muestral y realizaremos un diagrama de barras.
+
+Comenzamos cargando el paquete \texttt{tidyverse} para tener acceso a todas las funciones de \textsf{R} que usaremos a lo largo del tema.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{point}{%
+\subsection{Estimación puntual}\label{point}}
+
+Supongamos, como se indicó en el problema planteado en la introducción, que en los \(50\) lanzamientos observados, el jugador acertó \(28\) de ellos (y falló los \(22\) restantes).
+
+Recordemos que nuestro objetivo es estimar el valor teórico de la probabilidad o proporción de aciertos \(p\) del jugador. Una forma natural de hacerlo es calcular la proporción de aciertos en nuestra muestra de \(50\) lanzamientos: \[
+ \hat{p} = \frac{28}{50} = 0.56.
+\]
+
+Este valor se denomina \textbf{proporción muestral} y se denota \(\widehat{p}\), porque nos da una idea aproximada de cuál puede ser el verdadero valor del valor teórico \(p\), que se llama \textbf{proporción poblacional}.
+
+Decimos que la proporción muestral \(\widehat{p} = 0.56\) es una \textbf{estimación puntual} de la proporción poblacional \(p\). En general, una estimación puntual de un parámetro es un valor numérico calculado a partir de la muestra que nos orienta sobre el verdadero valor del parámetro.
+
+Hay que tener claro que la proporción muestral \(\widehat{p}=0.56\) nos proporciona una estimación puntual de la proporción poblacional \(p\), pero que el verdadero valor de \(p\) sigue siendo desconocido. El verdadero valor de \(p\) es la probabilidad de que el jugador acierte un tiro libre, que identificamos con la proporción de aciertos en el conjunto ideal de los infinitos lanzamientos que podría efectuar el jugador. Por su parte, el valor \(\widehat{p}=0.56\) es tan sólo la proporción de aciertos en los \(50\) lanzamientos que hemos observado. Podría ser que los \(50\) lanzamientos observados sean una ``mala racha'', y que el verdadero valor de la proporción de aciertos \(p\) sea superior a \(\widehat{p}=0.56\).
+
+\hypertarget{gruxe1ficos}{%
+\subsection{Gráficos}\label{gruxe1ficos}}
+
+Ahora vamos a representar gráficamente los datos mediante un diagrama de barras.
+
+En primer lugar creamos una tabla con el recuento de aciertos y fallos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{basket }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{result =} \FunctionTok{c}\NormalTok{(}\StringTok{"Acierto"}\NormalTok{, }\StringTok{"Fallo"}\NormalTok{),}
+  \AttributeTok{count =} \FunctionTok{c}\NormalTok{(}\DecValTok{28}\NormalTok{, }\DecValTok{22}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Y usamos la tabla creada para crear un diagrama de barras con la función \VERB|\FunctionTok{geom\_col}\NormalTok{()}|:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ basket,}
+  \AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}
+    \AttributeTok{x =}\NormalTok{ result,}
+    \AttributeTok{y =}\NormalTok{ count}
+\NormalTok{  )}
+\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.31\linewidth]{T8-Inferencia_files/figure-latex/unnamed-chunk-8-1} \end{center}
+
+Mejoramos un poco el aspecto inicial de nuestro gráfico de barras añadiendo rótulos, cambiando el color de las barras, y girándolo con \VERB|\FunctionTok{coord\_flip}\NormalTok{()}|:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}
+  \AttributeTok{data =}\NormalTok{ basket,}
+  \AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}
+    \AttributeTok{x =}\NormalTok{ result,}
+    \AttributeTok{y =}\NormalTok{ count}
+\NormalTok{  )}
+\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}
+    \AttributeTok{fill =} \StringTok{"\#7AA3E5"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Resultado de 50 tiros libres"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{""}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Recuento"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\CommentTok{\# centrar título}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{T8-Inferencia_files/figure-latex/unnamed-chunk-9-1} \end{center}
+
+\hypertarget{hypothesis}{%
+\section{Contrastes de hipótesis}\label{hypothesis}}
+
+Hasta ahora hemos descrito los datos numérica y gráficamente. Concretamente, hemos calculado la proporción de aciertos en la muestra, obteniendo el valor \(\widehat{p}=0.56\) para la proporción muestral, como estimación de la proporción poblacional \(p\), y hemos realizado un diagrama de barras de los recuentos de aciertos y fallos.
+
+Nos planteamos ahora responder a la primera cuestión planteada en el problema de la introducción:
+
+\begin{ebox}{}
+Supongamos que el jugador afirma que su probabilidad de acertar un tiro libre es \(0.75\). El objetivo es contrastrar si los datos observados resultan compatibles con la afirmación del jugador.
+
+\end{ebox}
+
+Con la exploración inicial que hemos hecho de los datos, podemos concretar el objetivo planteando lo que en estadística se denomina un \textbf{contraste de hipótesis}. Dividiremos el procedimiento en tres pasos: planteamiento de las hipótesis, cálculo del \(p\)-valor y conclusión.
+
+\hypertarget{planteamiento-de-las-hipuxf3tesis}{%
+\subsection{Planteamiento de las hipótesis}\label{planteamiento-de-las-hipuxf3tesis}}
+
+Según el jugador la proporción verdadera es \(p=0.75\). Y la estimación de \(p\) según nuestra muestra es \(\widehat{p}=0.56\), inferior al valor de \(p\) según el jugador.
+
+Como resaltamos antes, no podemos concluir con seguridad, basándonos en los datos obtenidos en la muestra de \(50\) lanzamientos, que el jugador mienta. Puede que el jugador diga la verdad, y que, por azar, hayamos observado una racha peor de lo habitual.
+
+Pero nuestros datos levantan la sospecha de que el jugador exagera, y nos sugieren que \(p<0.75\). Esta hipótesis sugerida por los datos se denomina \textbf{hipótesis alternativa}, y se denota \(H_1\).
+
+Por otra parte, a la igualdad \(p=0.75\), se le llama \textbf{hipótesis nula} y se denota \(H_0\).
+
+Resumimos el contraste de hipótesis que planteamos escribiendo
+
+\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&p&=&0.75\\
+    H_1:&p&<&0.75.
+  \end{array}
+  \right.
+\]
+
+\hypertarget{cuxe1lculo-del-p-valor}{%
+\subsection{\texorpdfstring{Cálculo del \(p\)-valor}{Cálculo del p-valor}}\label{cuxe1lculo-del-p-valor}}
+
+Vamos a resolver el conflicto, entre la hipótesis nula \(H_0\), y la hipótesis alternativa \(H_1\) que sugieren los datos, contestando a la pregunta siguiente:
+
+\begin{ebox}{}
+Si la realidad fuera que \(p=0.75\) (la hipótesis nula es cierta, el jugador dice la verdad) ¿cuál es la probabilidad de observar una racha tan mala como la observada o peor?
+
+\end{ebox}
+
+Respondiendo a esta pregunta, cuantificaremos la sospecha que han levantado nuestros datos y que provocó la formulación de la hipótesis alternativa.
+
+Si la respuesta es que la probabilidad es muy baja, tomaremos la decisión de acusar de mentiroso al jugador y nos decantaremos por la hipótesis alternativa de que \(p<0.75\). Si por el contrario la probabilidad no es muy baja, lo dejaremos estar y no acusaremos al jugador de mentiroso, pensaremos que los datos observados pueden deberse al azar y no a que el jugador mienta.
+
+Adoptaremos una actitud conservadora, y fijaremos el umbral de lo que consideramos una probabilidad muy baja en \(0.05\). De esta manera, si los datos observados tienen una probabilidad superior a \(0.05\), no acusaremos de mentiroso al jugador. Esta probabilidad se llama \textbf{nivel de significación} del contraste y se denota \(\alpha\). Lo más frecuente en el ámbito científico es trabajar con este nivel de significación \(\alpha=0.05\), pero también pueden convenirse otros valores como \(\alpha=0.01\).
+
+El procedimiento estadístico con el que vamos a resolver el contraste de hipótesis que hemos planteado y a calcular la probabilidad que buscamos se llama \textbf{test binomial exacto}. El comando de \textsf{R} que lo lleva a cabo es \VERB|\FunctionTok{binom.test}\NormalTok{()}|. Concretamente para resolver nuestro contraste tenemos que ejecutar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{binom.test}\NormalTok{(}
+  \AttributeTok{x =} \DecValTok{28}\NormalTok{,}
+  \AttributeTok{n =} \DecValTok{50}\NormalTok{,}
+  \AttributeTok{p =} \FloatTok{0.75}\NormalTok{,}
+  \AttributeTok{alternative =} \StringTok{"less"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Exact binomial test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  28 and 50}
+\NormalTok{\#\# number of successes = 28, number of trials = 50, p{-}value = 0.002618}
+\NormalTok{\#\# alternative hypothesis: true probability of success is less than 0.75}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  0.0000000 0.6801741}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# probability of success }
+\NormalTok{\#\#                   0.56}
+\end{Highlighting}
+\end{Shaded}
+
+Los argumentos \texttt{x\ =\ 28} y \texttt{n\ =\ 50} indican que hemos observado \(28\) aciertos en \(50\) lanzamientos. Con el argumento \texttt{p\ =\ 0.75} indicamos que queremos comparar nuestros datos con el valor de referencia \(0.75\) de la hipótesis nula. Y el argumento \texttt{alternative\ =\ "less"} indica que nuestra hipótesis alternativa es que \(p\) es menor que el valor umbral \(0.75\).
+
+La probabilidad que buscamos la encontramos en el fragmento de la salida
+
+\centerline{\ttfamily p-value = 0.002618.}
+
+Esta probabilidad 0.002618 asociada a nuestro contraste de hipótesis se denomina \textbf{\(\mathbf{p}\)-valor}. La letra \(p\) en \(p\)-valor es inicial de probabilidad, no tiene que ver con que estemos realizando un contraste de hipótesis sobre el parámetro \(p\) (en un contraste de hipótesis para una media también hablaríamos del \(p\)-valor de ese contraste).
+
+En el apartado siguiente, utilizaremos el \(p\)-valor para decidir entre las hipótesis contrastadas, esto es, entre la hipótesis nula \(p=0.75\) y la hipótesis alternativa sugerida por los datos \(p<0.75\). Para entender el criterio que seguiremos, vamos a analizar cómo se calcula el \(p\)-valor que hemos obtenido con \VERB|\FunctionTok{binom.test}\NormalTok{()}|.
+
+El \(p\)-valor \(0.002618\) que hemos obtenido con la función \VERB|\FunctionTok{binom.test}\NormalTok{()}| cuantifica nuestra sospecha de que \(p<0.75\), en el sentido que se explica a continuación:
+Si fuera verdad que \(p=0.75\), la probabilidad de observar en \(50\) lanzamientos una racha tan mala o peor como la de nuestra muestra sería de \(0.002618\).
+
+Dicho con otras palabras: si repetimos un gran número de veces el experimento (observar otros \(50\) lanzamientos y contabilizar los aciertos), en aproximadamente \(26\) de cada \(10000\) repeticiones observaríamos un resultado tan desfavorable como acertar tan sólo \(28\) de los \(50\) lanzamientos.
+
+Con las explicaciones anteriores, que describen el significado del \(p\)-valor, y la teoría que conocemos de variables aleatorias, tenemos herramientas suficientes para saber cómo se ha calculado el \(p\)-valor \(0.002618\): se obtiene como
+
+\begin{center}\includegraphics[width=0.2\linewidth]{easterEgg/easter-egg} \end{center}
+
+\begin{ebox}
+
+Reproduce el cálculo del \(p\)-valor \(0.002618\) como la probabilidad de un suceso asociado a la variable aleatoria
+\[
+  X = \text{Número de lanzamientos acertados entre los } 50 \text{ observados}.
+\]
+
+Sigue los siguientes pasos:
+
+\begin{itemize}
+\item
+  Piensa cuál es el suceso asociado a \(X\) cuya probabilidad coincide con \(p\)-valor, según el significado del \(p\)-valor que se ha explicado antes.
+\item
+  Calcula la probabilidad del suceso en cuestión utilizando los comandos de \textsf{R} que hemos estudiado en el Tema 6. Verifica que coincide con el \(p\)-valor para confirmar que has acertado.
+\item
+  Basándote en el significado del \(p\)-valor, escribe un breve párrafo explicando por qué coincide con la probabilidad del suceso propuesto.
+\end{itemize}
+
+\end{ebox}
+
+\hypertarget{conclusiuxf3n}{%
+\subsection{Conclusión}\label{conclusiuxf3n}}
+
+Continuará
+
+\hypertarget{conf-int}{%
+\section{Intervalos de confianza}\label{conf-int}}
+
+Continuará \ldots{}
+
+\nocite{Milton2003}
+\nocite{Montgomery2010}
+
+\makeatletter
+\renewcommand{\mybibnote@contents}{%
+Para ampliar conocimientos de este tema puedes consultar los Capítulos 6, 7, 8 y 9   de  \cite{Milton2003} y los Capítulos 6, 7, 8 y 9 de \cite{Montgomery2010}. 
+}
+\makeatother
+
+\cleardoublepage
+
+\hypertarget{problema-tipo-examen}{%
+\section*{\texorpdfstring{Problema \emph{tipo examen}}{Problema tipo examen}}\label{problema-tipo-examen}}
+\addcontentsline{toc}{section}{Problema \emph{tipo examen}}
+
+Continuará \ldots{}
+
+\cleardoublepage
+
+\printbibliography
+
+% This file is created the first time epdf_document is invoked
+% but will not be overwriten afterwards.
+%
+% After Body
+
+\end{document}

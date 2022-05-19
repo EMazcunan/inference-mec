@@ -1,0 +1,32 @@
+.pretitle, .title, .subtitle, .author, .subject, .degree, .term, .institution {
+	text-align: center;
+}
+.author {
+  font-size: medium;
+}
+
+.title {
+    padding: 0.7em 0 0.7em 0;
+    border-top: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+}
+
+.pretitle {
+    padding: 0.7em 0 0.7em 0;
+}
+
+
+.subject, .degree, .institution, .term {
+    display: block;
+    font-weight: normal;
+    font-size: medium;
+    white-space: pre
+    border: 1px solid black;
+}
+
+/* https://rmarkdown.rstudio.com/docs/reference/html_document.html#anchor-sections-customization */
+/* From https://material.io/resources/icons/
+  Licence: https://www.apache.org/licenses/LICENSE-2.0.html */
+a.anchor-section::before {
+ content: url(https://fonts.gstatic.com/s/i/materialicons/link/v7/24px.svg);
+}
