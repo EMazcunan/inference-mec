@@ -226,7 +226,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="conf-int" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">3</span> Intervalos de confianza<a href="conf-int.html#conf-int" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Continuará …</p>
+<p>En esta sección nos ocuparemos de la siguiente parte en la salida del comando <code class="sourceCode r"><span class="fu">binom.test</span>()</code> que ejecutamos en la sección anterior para resolver la primera parte el problema planteado en la introducción:</p>
+<p>Esta parte de la salida nos da <span class="math inline">\((0, 0.6801741)\)</span> como intervalo de confianza del <span class="math inline">\(95\%\)</span> para el parámetro <span class="math inline">\(p\)</span>, y responde a la segunda cuestión que planteamos al inicio de encontrar un conjunto de valores plausibles para <span class="math inline">\(p\)</span>. A continuación se explica cómo ha de interpretarse este intervalo de confianza y cómo se ha obtenido.</p>
+<p>Si la afirmación del jugador hubiera sido que su probabilidad de acierto es <span class="math inline">\(0.6\)</span> hubiéramos planteado el contraste de hipótesis:
+<span class="math display">\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&amp;p&amp;=&amp;0.6\\
+    H_1:&amp;p&amp;&lt;&amp;0.6.
+  \end{array}
+  \right.
+\]</span></p>
+<p>Para calcular el <span class="math inline">\(p\)</span>-valor de este nuevo contraste, supondríamos que <span class="math display">\[X\sim Binom(50,0.6)\]</span> y efectuaríamos el cálculo
+<span class="math display">\[
+    P(X\le 28) = F(28) = \KeywordTok{pbinom}\NormalTok{(}\DecValTok{28}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{0.6}\NormalTok{)} =0.3299.
+\]</span>
+Puedes comprobarlo con el código</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="conf-int.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(</span>
+<span id="cb9-2"><a href="conf-int.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">28</span>,</span>
+<span id="cb9-3"><a href="conf-int.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">50</span>,</span>
+<span id="cb9-4"><a href="conf-int.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="fl">0.6</span>,</span>
+<span id="cb9-5"><a href="conf-int.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span></span>
+<span id="cb9-6"><a href="conf-int.html#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Al ser el nuevo <span class="math inline">\(p\)</span>-valor 0.3299 mayor que <span class="math inline">\(\alpha = 0.05\)</span> no podemos asegurar, con una confianza del <span class="math inline">\(95\%\)</span>, que <span class="math inline">\(p&lt;0.6\)</span>. Por eso, el extremo superior del intervalo, 0.6801741, es superior a <span class="math inline">\(0.6\)</span>.</p>
+<p>El extremo superior de nuestro intervalo de confianza del <span class="math inline">\(95\%\)</span> es el mayor valor <span class="math inline">\(p_{0}\)</span> para el que el contraste de hipótesis
+<span class="math display">\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&amp;p&amp;=&amp;p_{0}\\
+    H_1:&amp;p&amp;&lt;&amp;p_{0}.
+  \end{array}
+  \right.
+\]</span>
+resulta en la aceptación de la hipótesis nula a nivel de significación <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p>Puedes comprobar que el <span class="math inline">\(p\)</span>-valor del contraste anterior es justo <span class="math inline">\(0.05\)</span> para <span class="math inline">\(p_0 = 0.6801741\)</span>, superior a <span class="math inline">\(0.05\)</span> para cualquier valor <span class="math inline">\(p_0&lt;0.6801741\)</span> en el intervalo de confianza, e inferior a <span class="math inline">\(0.05\)</span> para cualquier valor <span class="math inline">\(p_0&gt;0.6801741\)</span> fuera del intervalo de confianza.</p>
+<p>Con este procedimiento para construir el intervalo, sólo excluiremos al verdadero valor del parámetro del intervalo de confianza del <span class="math inline">\(95\%\)</span> cuando nos equivoquemos en nuestra decisión de rechazar la hipótesis nula. Y sabemos que, trabajando a nivel de significación <span class="math inline">\(\alpha=0.05\)</span>, dicha equivocación solo ocurre en un <span class="math inline">\(5\%\)</span> de las ocasiones. Por tanto, un intervalo de confianza del <span class="math inline">\(95\%\)</span> contendrá al verdadero valor del parámetro con probabilidad <span class="math inline">\(0.95\)</span>.</p>
+<p>En general, un intervalo de confianza de nivel <span class="math inline">\(1-\alpha\)</span> es el rango de valores del parámetro que no serían rechazados en un contraste de hipótesis a nivel de significación <span class="math inline">\(\alpha\)</span>. Esto garantiza que la proporción de intervalos de nivel <span class="math inline">\(1-\alpha\)</span> que dejan fuera al verdadero valor del parámetro es <span class="math inline">\(\alpha\)</span> y en consecuencia que la proporción de los que contienen al verdadero valor del parámetro es <span class="math inline">\(1-\alpha\)</span>.</p>
+<p>Nunca sabremos si nuestro intervalo de confianza <span class="math inline">\((0, 0.6801741)\)</span> contiene o no al verdadero valor de <span class="math inline">\(p\)</span>. Solo sabemos cuantificar que la probabilidad de que lo contenga es <span class="math inline">\(0.95\)</span>, porque se ha calculado con un procedimiento que resulta acertado en el <span class="math inline">\(95\%\)</span> de las ocasiones.</p>
 <p>
 </p>
 

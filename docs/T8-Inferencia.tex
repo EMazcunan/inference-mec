@@ -456,37 +456,132 @@ Dicho con otras palabras: si repetimos un gran número de veces el experimento (
 
 Con las explicaciones anteriores, que describen el significado del \(p\)-valor, y la teoría que conocemos de variables aleatorias, tenemos herramientas suficientes para saber cómo se ha calculado el \(p\)-valor \(0.002618\): se obtiene como
 
-\begin{center}\includegraphics[width=0.2\linewidth]{easterEgg/easter-egg} \end{center}
-
-\begin{ebox}
-
-Reproduce el cálculo del \(p\)-valor \(0.002618\) como la probabilidad de un suceso asociado a la variable aleatoria
 \[
-  X = \text{Número de lanzamientos acertados entre los } 50 \text{ observados}.
+    P(X\le 28) = F(28) = \KeywordTok{pbinom}\NormalTok{(}\DecValTok{28}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{0.75}\NormalTok{)} =0.0026178,
 \]
-
-Sigue los siguientes pasos:
-
-\begin{itemize}
-\item
-  Piensa cuál es el suceso asociado a \(X\) cuya probabilidad coincide con \(p\)-valor, según el significado del \(p\)-valor que se ha explicado antes.
-\item
-  Calcula la probabilidad del suceso en cuestión utilizando los comandos de \textsf{R} que hemos estudiado en el Tema 6. Verifica que coincide con el \(p\)-valor para confirmar que has acertado.
-\item
-  Basándote en el significado del \(p\)-valor, escribe un breve párrafo explicando por qué coincide con la probabilidad del suceso propuesto.
-\end{itemize}
-
-\end{ebox}
+donde hemos supuesto que \(X\sim Binom(50,0.75)\), es decir, hemos supuesto que \(p\) es igual a \(0.75\), el valor umbral en la hipótesis nula.
 
 \hypertarget{conclusiuxf3n}{%
 \subsection{Conclusión}\label{conclusiuxf3n}}
 
-Continuará
+Recordemos que habíamos decidido adoptar una actitud conservadora, de manera que no acusaríamos al jugador de mentiroso a no ser que, en el supuesto de que diga la verdad, los datos obtenidos tuvieran una probabilidad inferior a \(\alpha=0.05\). La probabilidad obtenida ha sido \(0.002618\), mucho menor que nuestro ``umbral del credulidad'' o nivel de significación \(\alpha=0.05\). Así que nuestra conclusión es que rechazamos la afirmación del jugador en favor de nuestra hipótesis alternativa de que \(p<0.75\).
+
+Ahora, nunca sabremos si nos hemos equivocado en nuestra decisión. Como hemos trabajado con un umbral de credulidad del \(5\%\), podríamos decir que tenemos una confianza del \(95\%\) en que nuestra decisión es correcta. Esto es así porque sólo corremos el riesgo de equivocarnos en el \(5\%\) de las ocasiones en que, siendo verdad la afirmación del jugador, la mala racha se deba al azar. Como se indicó en la introducción esta incertidumbre acompaña a cualquier conclusión de un procedimiento de inferencia estadística (figuras \ref{fig:dilbert} y \ref{fig:lie}).
+
+\textbf{Nota:} Si en los \(50\) lanzamientos hubiéramos obtenido \(40\) aciertos, entonces la proporción muestral sería
+\[\hat p = 40/50=0.8.\]
+
+En ese caso plantearíamos el contraste de hipótesis
+
+\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&p&=&0.75\\
+    H_1:&p&>&0.75.
+  \end{array}
+  \right.
+\]
+
+puesto que ahora los datos sugieren como hipótesis alternativa que la probabilidad de acierto es superior al valor \(0.75\) indicado por el jugador. La hipótesis alternativa siempre es la sugerida por los datos. Y al realizar el contraste de hipótesis valoramos si los datos arrojan suficiente evidencia como para extrapolar lo observado en la muestra (\(\hat p = 0.8>0.75\)) a la población (\(p>0.75\)).
+
+El código de \textsf{R} para realizar el nuevo contraste y calcular su \(p\)-valor sería ahora:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{binom.test}\NormalTok{(}
+  \AttributeTok{x =} \DecValTok{40}\NormalTok{,}
+  \AttributeTok{n =} \DecValTok{50}\NormalTok{,}
+  \AttributeTok{p =} \FloatTok{0.75}\NormalTok{,}
+  \AttributeTok{alternative =} \StringTok{"greater"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Exact binomial test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  40 and 50}
+\NormalTok{\#\# number of successes = 40, number of trials = 50, p{-}value = 0.2622}
+\NormalTok{\#\# alternative hypothesis: true probability of success is greater than 0.75}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  0.6844039 1.0000000}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# probability of success }
+\NormalTok{\#\#                    0.8}
+\end{Highlighting}
+\end{Shaded}
+
+Al ser ahora el \(p\)-valor \(0.2622\) superior a \(\alpha=0.05\), no podríamos rechazar la hipótesis nula en favor de la hipótesis alternativa y concluir que la probabilidad de aciertos del jugador es superior a \(0.75\). Creeríamos simplemente que, por azar, hemos observado una racha de \(50\) lanzamientos un poco mejor de lo habitual para el jugador. No nos resulta extraña la racha observada porque la probabilidad de obtener una racha así de buena o mejor, siendo la verdadera probabilidad de acierto \(0.75\), es \(0.2622\), el \(p\)-valor.
+
+La interpretación general del \(p\)-valor de un contraste de hipótesis es que es la probabilidad de obtener unos datos tan extremos como el observado (extremos en el sentido de ir a favor de la hipótesis alternativa) siendo la hipótesis nula cierta.
+Por eso, cuando el \(p\)-valor es muy pequeño, menor que el valor de referencia \(\alpha=0.05\), rechazamos la hipótesis nula en favor de la alternativa, al parecernos muy extraño que los datos observados se deban al azar. Mientras que cuando el \(p\)-valor es superior a \(\alpha=0.05\), adoptamos la postura conservadora de no rechazar la hipótesis nula, asumiendo que hemos observado datos extremos por azar.
+
+Una analogía útil para entender la filosofía de un contraste de hipótesis es pensar que se trata de un juicio, comparando la hipótesis nula \(H_0\) con la presunción de inocencia, y la hipótesis alternativa \(H_1\) con la acusación de culpabilidad sugerida por las pruebas. Solo cuando las pruebas arrojan la suficiente evidencia, abandonaremos la presunción de inocencia inicial para dictar una acusación de culpabilidad. Adoptamos la actitud conservadora de considerar que las pruebas arrojan suficiente evidencia de culpabilidad cuando su probabilidad fuera a inferior a \(\alpha=0.05\) si la persona juzgada fuera inocente.
 
 \hypertarget{conf-int}{%
 \section{Intervalos de confianza}\label{conf-int}}
 
-Continuará \ldots{}
+En esta sección nos ocuparemos de la siguiente parte en la salida del comando \VERB|\FunctionTok{binom.test}\NormalTok{()}| que ejecutamos en la sección anterior para resolver la primera parte el problema planteado en la introducción:
+
+\begin{center}
+    \ttfamily 
+    \begin{tabular}{l}
+    95 percent confidence interval: \\
+    \ 0.0000000  0.6801741
+    \end{tabular}
+\end{center}
+
+Esta parte de la salida nos da \((0, 0.6801741)\) como intervalo de confianza del \(95\%\) para el parámetro \(p\), y responde a la segunda cuestión que planteamos al inicio de encontrar un conjunto de valores plausibles para \(p\). A continuación se explica cómo ha de interpretarse este intervalo de confianza y cómo se ha obtenido.
+
+Si la afirmación del jugador hubiera sido que su probabilidad de acierto es \(0.6\) hubiéramos planteado el contraste de hipótesis:
+\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&p&=&0.6\\
+    H_1:&p&<&0.6.
+  \end{array}
+  \right.
+\]
+
+Para calcular el \(p\)-valor de este nuevo contraste, supondríamos que \[X\sim Binom(50,0.6)\] y efectuaríamos el cálculo
+\[
+    P(X\le 28) = F(28) = \KeywordTok{pbinom}\NormalTok{(}\DecValTok{28}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{0.6}\NormalTok{)} =0.3299.
+\]
+Puedes comprobarlo con el código
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{binom.test}\NormalTok{(}
+  \AttributeTok{x =} \DecValTok{28}\NormalTok{,}
+  \AttributeTok{n =} \DecValTok{50}\NormalTok{,}
+  \AttributeTok{p =} \FloatTok{0.6}\NormalTok{,}
+  \AttributeTok{alternative =} \StringTok{"less"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Al ser el nuevo \(p\)-valor 0.3299 mayor que \(\alpha = 0.05\) no podemos asegurar, con una confianza del \(95\%\), que \(p<0.6\). Por eso, el extremo superior del intervalo, 0.6801741, es superior a \(0.6\).
+
+El extremo superior de nuestro intervalo de confianza del \(95\%\) es el mayor valor \(p_{0}\) para el que el contraste de hipótesis
+\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&p&=&p_{0}\\
+    H_1:&p&<&p_{0}.
+  \end{array}
+  \right.
+\]
+resulta en la aceptación de la hipótesis nula a nivel de significación \(\alpha = 0.05\).
+
+Puedes comprobar que el \(p\)-valor del contraste anterior es justo \(0.05\) para \(p_0 = 0.6801741\), superior a \(0.05\) para cualquier valor \(p_0<0.6801741\) en el intervalo de confianza, e inferior a \(0.05\) para cualquier valor \(p_0>0.6801741\) fuera del intervalo de confianza.
+
+Con este procedimiento para construir el intervalo, sólo excluiremos al verdadero valor del parámetro del intervalo de confianza del \(95\%\) cuando nos equivoquemos en nuestra decisión de rechazar la hipótesis nula. Y sabemos que, trabajando a nivel de significación \(\alpha=0.05\), dicha equivocación solo ocurre en un \(5\%\) de las ocasiones. Por tanto, un intervalo de confianza del \(95\%\) contendrá al verdadero valor del parámetro con probabilidad \(0.95\).
+
+En general, un intervalo de confianza de nivel \(1-\alpha\) es el rango de valores del parámetro que no serían rechazados en un contraste de hipótesis a nivel de significación \(\alpha\). Esto garantiza que la proporción de intervalos de nivel \(1-\alpha\) que dejan fuera al verdadero valor del parámetro es \(\alpha\) y en consecuencia que la proporción de los que contienen al verdadero valor del parámetro es \(1-\alpha\).
+
+Nunca sabremos si nuestro intervalo de confianza \((0, 0.6801741)\) contiene o no al verdadero valor de \(p\). Solo sabemos cuantificar que la probabilidad de que lo contenga es \(0.95\), porque se ha calculado con un procedimiento que resulta acertado en el \(95\%\) de las ocasiones.
 
 \nocite{Milton2003}
 \nocite{Montgomery2010}
@@ -497,13 +592,170 @@ Para ampliar conocimientos de este tema puedes consultar los Capítulos 6, 7, 8 
 }
 \makeatother
 
-\cleardoublepage
-
 \hypertarget{problema-tipo-examen}{%
 \section*{\texorpdfstring{Problema \emph{tipo examen}}{Problema tipo examen}}\label{problema-tipo-examen}}
 \addcontentsline{toc}{section}{Problema \emph{tipo examen}}
 
-Continuará \ldots{}
+A continuación se incluye un problema del estilo de los que se podrían plantear en el examen escrito para este tema.
+
+\begin{ex}
+
+Jugamos con un amigo al \href{https://www.mathwarehouse.com/monty-hall-simulation-online/}{\emph{Problema de Monty Hall}}.
+
+Nuestro amigo mantiene erróneamente que la probabilidad de ganar el coche es \(1/3\), tanto si se cambia de puerta como si no.
+
+Pero nosotros sabemos que la probabilidad de ganar el coche si no cambiamos de puerta es \(1/3\), mientras que la probabilidad de ganarlo cambiando de puerta es \(2/3\).
+
+Sin embargo, no conseguimos convencer a nuestro amigo de su error utilizando argumentos teóricos. Por tanto, nos planteamos convencerlo de que el valor del parámetro
+
+\begin{center}
+\(p =\)
+probabilidad de ganar el coche cambiando de puerta
+
+\end{center}
+
+es mayor que \(1/3\), basándonos en los resultados de varias simulaciones del juego cambiando de puerta.
+
+Se realizaron \(66\) simulaciones del juego cambiando de puerta y se ganó el coche en \(48\) de ellas (obteniendo una cabra en las \(16\) restantes).
+
+\begin{parts}
+
+\item
+
+Plantea el contraste de hipótesis para comparar \(p\) con \(1/3\) y completa el siguiente código para realizar el test binomial exacto para resolverlo (a nivel de signficación \(0.05\)):
+
+\begin{verbatim}
+binom.test(
+    x =     ,
+    n =     ,
+    p =     ,
+    alternative =
+)
+\end{verbatim}
+
+\begin{sol}
+
+En nuestra muestra se ganan \(x=48\) coches en un total de \(n=66\) juegos de forma que la proporción muestral es
+\[
+\hat p = \frac{x}{n} = \frac{48}{66}  = 0.73.
+\]
+
+Puesto que la proporción muestral calculada es mayor que \(1/3\), podemos formular el contraste de hipótesis
+\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&p&=&1/3\\
+    H_1:&p&>&1/3.
+  \end{array}
+  \right.
+\]
+
+El código de \textsf{R} para realizar el contraste planteado sería
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{binom.test}\NormalTok{(}
+  \AttributeTok{x =} \DecValTok{48}\NormalTok{,}
+  \AttributeTok{n =} \DecValTok{66}\NormalTok{,}
+  \AttributeTok{p =} \DecValTok{1} \SpecialCharTok{/} \DecValTok{3}\NormalTok{,}
+  \AttributeTok{alternative =} \StringTok{"greater"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{sol}
+
+\item
+
+Al ejecutar el código del apartado anterior, con los valores adecuados para los argumentos, se obtiene la siguiente salida:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#\# }
+\NormalTok{\#\#  Exact binomial test}
+\NormalTok{\#\# }
+\NormalTok{\#\# data:  x and n}
+\NormalTok{\#\# number of successes = 48, number of trials = 66, p{-}value = 7.091e{-}11}
+\NormalTok{\#\# alternative hypothesis: true probability of success is greater than 0.3333333}
+\NormalTok{\#\# 95 percent confidence interval:}
+\NormalTok{\#\#  0.6228693 1.0000000}
+\NormalTok{\#\# sample estimates:}
+\NormalTok{\#\# probability of success }
+\NormalTok{\#\#              0.7272727}
+\end{Highlighting}
+\end{Shaded}
+
+Utiliza el \(p\)-valor obtenido para decidir si los datos conseguirán convencer a nuestro amigo de que \(p\) es mayor que \(1/3\). Indica además cómo se interpreta y calcula dicho \(p\)-valor.
+
+\begin{sol}
+Al ser el \(p\)-valor obtenido \(\ensuremath{7.091\times 10^{-11}}\) menor que el nivel de significación \(0.05\), rechazamos la hipótesis nula en favor de la alternativa, y concluimos que los datos arrojan suficiente evidencia para afirmar que \(p>1/3\) y convencer a nuestro amigo de su error.
+
+En general, el \(p\)-valor de un contraste de hipótesis es la probabilidad de obtener datos tanto o más extremos que los observados en la muestra si la hipótesis nula fuera cierta.
+En este caso, el \(p\)-valor \(\ensuremath{7.091\times 10^{-11}}\) indica la probabilidad de ganar \(48\) o más coches en \(66\) repeticiones del juego si la probabilidad de ganar fuera \(1/3\), como cree nuestro amigo.
+
+Para reproducir el cálculo del \(p\)-valor consideramos la variable aleatoria
+
+\begin{center}
+\(X =\) Número de veces que se gana el coche en 66 juegos
+
+\end{center}
+
+y calculamos la probabilidad
+\[
+P(X \ge 48) = 1-F(47) = \DecValTok{1}\NormalTok{-}\KeywordTok{pbinom}\NormalTok{(}\DecValTok{47}\NormalTok{,} \DecValTok{66}\NormalTok{,} \DecValTok{1}\NormalTok{/}\DecValTok{3}\NormalTok{)}
+\]
+que resulta en el mismo valor de la salida de \textsf{R}.
+
+\end{sol}
+
+\item
+
+Basándote en el intervalo de confianza en la salida del comando \VERB|\FunctionTok{binom.test}\NormalTok{()}| dada en el apartado anterior, responde a la siguiente pregunta: Si planteamos el contraste de hipótesis
+
+\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&p&=&0.65\\
+    H_1:&p&>&0.65
+  \end{array}
+  \right.
+\]
+¿cuál sería la conclusión a nivel de significación \(0.05\)?
+
+\begin{sol}
+En general, un intervalo de confianza del \(95\%\) es el rango de valores del parámetro que no serían rechazados en un contraste de hipótesis a nivel de significación \(0.05\).
+
+Así nuestro intervalo de confianza \((0.6228693,1)\) incluye a los valores \(p_0\) que serían aceptados en el contraste
+
+\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&p&=&p_0\\
+    H_1:&p&>&p_0.
+  \end{array}
+  \right.
+\]
+
+En particular, como \(0.65\) pertenece al intervalo \((0.6228693,1)\), el contraste
+\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&p&=&0.65\\
+    H_1:&p&>&0.65
+  \end{array}
+  \right.
+\]
+resultaría en la aceptación de la hipótesis nula, sin aportar los datos observados suficiente evidencia para rechazar que \(p=0.65\) y concluir que \(p>0.65\) a nivel de significación \(0.05\).
+
+\textbf{Nota:} Puedes comprobar con el comando \VERB|\FunctionTok{binom.test}\NormalTok{()}| que el \(p\)-valor del contraste propuesto es \(0.1163\), que significa que, siendo \(p=0.65\), y no mayor, la probabilidad de ganar \(48\) coches o más en \(66\) juegos es \(0.1163\). Por tanto, trabajando a nivel de significación \(0.05\), resulta compatible creer que \(p=0.65\) y que el elevado número de coches ganados se debe al azar, y no a que \(p>0.65\).
+
+Aunque sabemos que el valor real de \(p\) es \(2/3=0.\overline6\) el contraste de hipótesis no ha tenido suficiente potencia para concluir que \(p>0.65\) a partir de nuestros datos.
+
+\end{sol}
+
+\end{parts}
+
+\end{ex}
 
 \cleardoublepage
 

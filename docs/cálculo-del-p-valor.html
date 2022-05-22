@@ -259,19 +259,10 @@ probability of success
 Si fuera verdad que <span class="math inline">\(p=0.75\)</span>, la probabilidad de observar en <span class="math inline">\(50\)</span> lanzamientos una racha tan mala o peor como la de nuestra muestra sería de <span class="math inline">\(0.002618\)</span>.</p>
 <p>Dicho con otras palabras: si repetimos un gran número de veces el experimento (observar otros <span class="math inline">\(50\)</span> lanzamientos y contabilizar los aciertos), en aproximadamente <span class="math inline">\(26\)</span> de cada <span class="math inline">\(10000\)</span> repeticiones observaríamos un resultado tan desfavorable como acertar tan sólo <span class="math inline">\(28\)</span> de los <span class="math inline">\(50\)</span> lanzamientos.</p>
 <p>Con las explicaciones anteriores, que describen el significado del <span class="math inline">\(p\)</span>-valor, y la teoría que conocemos de variables aleatorias, tenemos herramientas suficientes para saber cómo se ha calculado el <span class="math inline">\(p\)</span>-valor <span class="math inline">\(0.002618\)</span>: se obtiene como</p>
-<p><img src="easterEgg/easter-egg.png" width="20%" style="display: block; margin: auto;" /></p>
-<div class="ebox">
-<p>Reproduce el cálculo del <span class="math inline">\(p\)</span>-valor <span class="math inline">\(0.002618\)</span> como la probabilidad de un suceso asociado a la variable aleatoria
-<span class="math display">\[
-  X = \text{Número de lanzamientos acertados entre los } 50 \text{ observados}.
-\]</span></p>
-<p>Sigue los siguientes pasos:</p>
-<ul>
-<li><p>Piensa cuál es el suceso asociado a <span class="math inline">\(X\)</span> cuya probabilidad coincide con <span class="math inline">\(p\)</span>-valor, según el significado del <span class="math inline">\(p\)</span>-valor que se ha explicado antes.</p></li>
-<li><p>Calcula la probabilidad del suceso en cuestión utilizando los comandos de <span class="textsf">R</span> que hemos estudiado en el Tema 6. Verifica que coincide con el <span class="math inline">\(p\)</span>-valor para confirmar que has acertado.</p></li>
-<li><p>Basándote en el significado del <span class="math inline">\(p\)</span>-valor, escribe un breve párrafo explicando por qué coincide con la probabilidad del suceso propuesto.</p></li>
-</ul>
-</div>
+<p><span class="math display">\[
+    P(X\le 28) = F(28) = \KeywordTok{pbinom}\NormalTok{(}\DecValTok{28}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{0.75}\NormalTok{)} =0.0026178,
+\]</span>
+donde hemos supuesto que <span class="math inline">\(X\sim Binom(50,0.75)\)</span>, es decir, hemos supuesto que <span class="math inline">\(p\)</span> es igual a <span class="math inline">\(0.75\)</span>, el valor umbral en la hipótesis nula.</p>
 </div>
 <script src="egitbook/js/sols.js"></script>
 <!-- Este script está a medias.

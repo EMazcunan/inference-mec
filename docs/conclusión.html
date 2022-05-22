@@ -226,7 +226,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="conclusión" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Conclusión<a href="conclusión.html#conclusión" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Continuará</p>
+<p>Recordemos que habíamos decidido adoptar una actitud conservadora, de manera que no acusaríamos al jugador de mentiroso a no ser que, en el supuesto de que diga la verdad, los datos obtenidos tuvieran una probabilidad inferior a <span class="math inline">\(\alpha=0.05\)</span>. La probabilidad obtenida ha sido <span class="math inline">\(0.002618\)</span>, mucho menor que nuestro “umbral del credulidad” o nivel de significación <span class="math inline">\(\alpha=0.05\)</span>. Así que nuestra conclusión es que rechazamos la afirmación del jugador en favor de nuestra hipótesis alternativa de que <span class="math inline">\(p&lt;0.75\)</span>.</p>
+<p>Ahora, nunca sabremos si nos hemos equivocado en nuestra decisión. Como hemos trabajado con un umbral de credulidad del <span class="math inline">\(5\%\)</span>, podríamos decir que tenemos una confianza del <span class="math inline">\(95\%\)</span> en que nuestra decisión es correcta. Esto es así porque sólo corremos el riesgo de equivocarnos en el <span class="math inline">\(5\%\)</span> de las ocasiones en que, siendo verdad la afirmación del jugador, la mala racha se deba al azar. Como se indicó en la introducción esta incertidumbre acompaña a cualquier conclusión de un procedimiento de inferencia estadística (figuras <a href="intro.html#fig:dilbert">1</a> y <a href="intro.html#fig:lie">2</a>).</p>
+<p><strong>Nota:</strong> Si en los <span class="math inline">\(50\)</span> lanzamientos hubiéramos obtenido <span class="math inline">\(40\)</span> aciertos, entonces la proporción muestral sería
+<span class="math display">\[\hat p = 40/50=0.8.\]</span></p>
+<p>En ese caso plantearíamos el contraste de hipótesis</p>
+<p><span class="math display">\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&amp;p&amp;=&amp;0.75\\
+    H_1:&amp;p&amp;&gt;&amp;0.75.
+  \end{array}
+  \right.
+\]</span></p>
+<p>puesto que ahora los datos sugieren como hipótesis alternativa que la probabilidad de acierto es superior al valor <span class="math inline">\(0.75\)</span> indicado por el jugador. La hipótesis alternativa siempre es la sugerida por los datos. Y al realizar el contraste de hipótesis valoramos si los datos arrojan suficiente evidencia como para extrapolar lo observado en la muestra (<span class="math inline">\(\hat p = 0.8&gt;0.75\)</span>) a la población (<span class="math inline">\(p&gt;0.75\)</span>).</p>
+<p>El código de <span class="textsf">R</span> para realizar el nuevo contraste y calcular su <span class="math inline">\(p\)</span>-valor sería ahora:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="conclusión.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(</span>
+<span id="cb7-2"><a href="conclusión.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">40</span>,</span>
+<span id="cb7-3"><a href="conclusión.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">50</span>,</span>
+<span id="cb7-4"><a href="conclusión.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="fl">0.75</span>,</span>
+<span id="cb7-5"><a href="conclusión.html#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span></span>
+<span id="cb7-6"><a href="conclusión.html#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre class="egitbook-output"><code>
+    Exact binomial test
+
+data:  40 and 50
+number of successes = 40, number of trials = 50, p-value = 0.2622
+alternative hypothesis: true probability of success is greater than 0.75
+95 percent confidence interval:
+ 0.6844039 1.0000000
+sample estimates:
+probability of success 
+                   0.8 </code></pre>
+<p>Al ser ahora el <span class="math inline">\(p\)</span>-valor <span class="math inline">\(0.2622\)</span> superior a <span class="math inline">\(\alpha=0.05\)</span>, no podríamos rechazar la hipótesis nula en favor de la hipótesis alternativa y concluir que la probabilidad de aciertos del jugador es superior a <span class="math inline">\(0.75\)</span>. Creeríamos simplemente que, por azar, hemos observado una racha de <span class="math inline">\(50\)</span> lanzamientos un poco mejor de lo habitual para el jugador. No nos resulta extraña la racha observada porque la probabilidad de obtener una racha así de buena o mejor, siendo la verdadera probabilidad de acierto <span class="math inline">\(0.75\)</span>, es <span class="math inline">\(0.2622\)</span>, el <span class="math inline">\(p\)</span>-valor.</p>
+<p>La interpretación general del <span class="math inline">\(p\)</span>-valor de un contraste de hipótesis es que es la probabilidad de obtener unos datos tan extremos como el observado (extremos en el sentido de ir a favor de la hipótesis alternativa) siendo la hipótesis nula cierta.
+Por eso, cuando el <span class="math inline">\(p\)</span>-valor es muy pequeño, menor que el valor de referencia <span class="math inline">\(\alpha=0.05\)</span>, rechazamos la hipótesis nula en favor de la alternativa, al parecernos muy extraño que los datos observados se deban al azar. Mientras que cuando el <span class="math inline">\(p\)</span>-valor es superior a <span class="math inline">\(\alpha=0.05\)</span>, adoptamos la postura conservadora de no rechazar la hipótesis nula, asumiendo que hemos observado datos extremos por azar.</p>
+<p>Una analogía útil para entender la filosofía de un contraste de hipótesis es pensar que se trata de un juicio, comparando la hipótesis nula <span class="math inline">\(H_0\)</span> con la presunción de inocencia, y la hipótesis alternativa <span class="math inline">\(H_1\)</span> con la acusación de culpabilidad sugerida por las pruebas. Solo cuando las pruebas arrojan la suficiente evidencia, abandonaremos la presunción de inocencia inicial para dictar una acusación de culpabilidad. Adoptamos la actitud conservadora de considerar que las pruebas arrojan suficiente evidencia de culpabilidad cuando su probabilidad fuera a inferior a <span class="math inline">\(\alpha=0.05\)</span> si la persona juzgada fuera inocente.</p>
 
 </div>
 <!-- </div> -->

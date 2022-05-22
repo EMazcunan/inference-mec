@@ -226,7 +226,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="problema-tipo-examen" class="section level1 unnumbered hasAnchor">
 <h1>Problema <em>tipo examen</em><a href="problema-tipo-examen.html#problema-tipo-examen" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Continuará …</p>
+<p>A continuación se incluye un problema del estilo de los que se podrían plantear en el examen escrito para este tema.</p>
+<div class="ex" number="2">
+<p>Jugamos con un amigo al <a href="https://www.mathwarehouse.com/monty-hall-simulation-online/" target="_blank"><em>Problema de Monty Hall</em></a>.</p>
+<p>Nuestro amigo mantiene erróneamente que la probabilidad de ganar el coche es <span class="math inline">\(1/3\)</span>, tanto si se cambia de puerta como si no.</p>
+<p>Pero nosotros sabemos que la probabilidad de ganar el coche si no cambiamos de puerta es <span class="math inline">\(1/3\)</span>, mientras que la probabilidad de ganarlo cambiando de puerta es <span class="math inline">\(2/3\)</span>.</p>
+<p>Sin embargo, no conseguimos convencer a nuestro amigo de su error utilizando argumentos teóricos. Por tanto, nos planteamos convencerlo de que el valor del parámetro</p>
+<div class="center">
+<p><span class="math inline">\(p =\)</span>
+probabilidad de ganar el coche cambiando de puerta</p>
+</div>
+<p>es mayor que <span class="math inline">\(1/3\)</span>, basándonos en los resultados de varias simulaciones del juego cambiando de puerta.</p>
+<p>Se realizaron <span class="math inline">\(66\)</span> simulaciones del juego cambiando de puerta y se ganó el coche en <span class="math inline">\(48\)</span> de ellas (obteniendo una cabra en las <span class="math inline">\(16\)</span> restantes).</p>
+<div class="parts">
+<p><span class="item"> </span> Plantea el contraste de hipótesis para comparar <span class="math inline">\(p\)</span> con <span class="math inline">\(1/3\)</span> y completa el siguiente código para realizar el test binomial exacto para resolverlo (a nivel de signficación <span class="math inline">\(0.05\)</span>):</p>
+<pre><code>binom.test(
+    x =     ,
+    n =     ,
+    p =     ,
+    alternative =
+)</code></pre>
+<div class="sol">
+<p>En nuestra muestra se ganan <span class="math inline">\(x=48\)</span> coches en un total de <span class="math inline">\(n=66\)</span> juegos de forma que la proporción muestral es
+<span class="math display">\[
+\hat p = \frac{x}{n} = \frac{48}{66}  = 0.73.
+\]</span></p>
+<p>Puesto que la proporción muestral calculada es mayor que <span class="math inline">\(1/3\)</span>, podemos formular el contraste de hipótesis
+<span class="math display">\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&amp;p&amp;=&amp;1/3\\
+    H_1:&amp;p&amp;&gt;&amp;1/3.
+  \end{array}
+  \right.
+\]</span></p>
+<p>El código de <span class="textsf">R</span> para realizar el contraste planteado sería</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="problema-tipo-examen.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(</span>
+<span id="cb11-2"><a href="problema-tipo-examen.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">48</span>,</span>
+<span id="cb11-3"><a href="problema-tipo-examen.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">66</span>,</span>
+<span id="cb11-4"><a href="problema-tipo-examen.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">3</span>,</span>
+<span id="cb11-5"><a href="problema-tipo-examen.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span></span>
+<span id="cb11-6"><a href="problema-tipo-examen.html#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<p><span class="item"> </span> Al ejecutar el código del apartado anterior, con los valores adecuados para los argumentos, se obtiene la siguiente salida:</p>
+<pre class="egitbook-output"><code>
+    Exact binomial test
+
+data:  x and n
+number of successes = 48, number of trials = 66, p-value = 7.091e-11
+alternative hypothesis: true probability of success is greater than 0.3333333
+95 percent confidence interval:
+ 0.6228693 1.0000000
+sample estimates:
+probability of success 
+             0.7272727 </code></pre>
+<p>Utiliza el <span class="math inline">\(p\)</span>-valor obtenido para decidir si los datos conseguirán convencer a nuestro amigo de que <span class="math inline">\(p\)</span> es mayor que <span class="math inline">\(1/3\)</span>. Indica además cómo se interpreta y calcula dicho <span class="math inline">\(p\)</span>-valor.</p>
+<div class="sol">
+<p>Al ser el <span class="math inline">\(p\)</span>-valor obtenido <span class="math inline">\(7.091\times 10^{-11}\)</span> menor que el nivel de significación <span class="math inline">\(0.05\)</span>, rechazamos la hipótesis nula en favor de la alternativa, y concluimos que los datos arrojan suficiente evidencia para afirmar que <span class="math inline">\(p&gt;1/3\)</span> y convencer a nuestro amigo de su error.</p>
+<p>En general, el <span class="math inline">\(p\)</span>-valor de un contraste de hipótesis es la probabilidad de obtener datos tanto o más extremos que los observados en la muestra si la hipótesis nula fuera cierta.
+En este caso, el <span class="math inline">\(p\)</span>-valor <span class="math inline">\(7.091\times 10^{-11}\)</span> indica la probabilidad de ganar <span class="math inline">\(48\)</span> o más coches en <span class="math inline">\(66\)</span> repeticiones del juego si la probabilidad de ganar fuera <span class="math inline">\(1/3\)</span>, como cree nuestro amigo.</p>
+<p>Para reproducir el cálculo del <span class="math inline">\(p\)</span>-valor consideramos la variable aleatoria</p>
+<div class="center">
+<p><span class="math inline">\(X =\)</span> Número de veces que se gana el coche en 66 juegos</p>
+</div>
+<p>y calculamos la probabilidad
+<span class="math display">\[
+P(X \ge 48) = 1-F(47) = \DecValTok{1}\NormalTok{-}\KeywordTok{pbinom}\NormalTok{(}\DecValTok{47}\NormalTok{,} \DecValTok{66}\NormalTok{,} \DecValTok{1}\NormalTok{/}\DecValTok{3}\NormalTok{)}
+\]</span>
+que resulta en el mismo valor de la salida de <span class="textsf">R</span>.</p>
+</div>
+<p><span class="item"> </span> Basándote en el intervalo de confianza en la salida del comando <code class="sourceCode r"><span class="fu">binom.test</span>()</code> dada en el apartado anterior, responde a la siguiente pregunta: Si planteamos el contraste de hipótesis</p>
+<p><span class="math display">\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&amp;p&amp;=&amp;0.65\\
+    H_1:&amp;p&amp;&gt;&amp;0.65
+  \end{array}
+  \right.
+\]</span>
+¿cuál sería la conclusión a nivel de significación <span class="math inline">\(0.05\)</span>?</p>
+<div class="sol">
+<p>En general, un intervalo de confianza del <span class="math inline">\(95\%\)</span> es el rango de valores del parámetro que no serían rechazados en un contraste de hipótesis a nivel de significación <span class="math inline">\(0.05\)</span>.</p>
+<p>Así nuestro intervalo de confianza <span class="math inline">\((0.6228693,1)\)</span> incluye a los valores <span class="math inline">\(p_0\)</span> que serían aceptados en el contraste</p>
+<p><span class="math display">\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&amp;p&amp;=&amp;p_0\\
+    H_1:&amp;p&amp;&gt;&amp;p_0.
+  \end{array}
+  \right.
+\]</span></p>
+<p>En particular, como <span class="math inline">\(0.65\)</span> pertenece al intervalo <span class="math inline">\((0.6228693,1)\)</span>, el contraste
+<span class="math display">\[
+  \left\{
+  \begin{array}{lrcl}
+    H_0:&amp;p&amp;=&amp;0.65\\
+    H_1:&amp;p&amp;&gt;&amp;0.65
+  \end{array}
+  \right.
+\]</span>
+resultaría en la aceptación de la hipótesis nula, sin aportar los datos observados suficiente evidencia para rechazar que <span class="math inline">\(p=0.65\)</span> y concluir que <span class="math inline">\(p&gt;0.65\)</span> a nivel de significación <span class="math inline">\(0.05\)</span>.</p>
+<p><strong>Nota:</strong> Puedes comprobar con el comando <code class="sourceCode r"><span class="fu">binom.test</span>()</code> que el <span class="math inline">\(p\)</span>-valor del contraste propuesto es <span class="math inline">\(0.1163\)</span>, que significa que, siendo <span class="math inline">\(p=0.65\)</span>, y no mayor, la probabilidad de ganar <span class="math inline">\(48\)</span> coches o más en <span class="math inline">\(66\)</span> juegos es <span class="math inline">\(0.1163\)</span>. Por tanto, trabajando a nivel de significación <span class="math inline">\(0.05\)</span>, resulta compatible creer que <span class="math inline">\(p=0.65\)</span> y que el elevado número de coches ganados se debe al azar, y no a que <span class="math inline">\(p&gt;0.65\)</span>.</p>
+<p>Aunque sabemos que el valor real de <span class="math inline">\(p\)</span> es <span class="math inline">\(2/3=0.\overline6\)</span> el contraste de hipótesis no ha tenido suficiente potencia para concluir que <span class="math inline">\(p&gt;0.65\)</span> a partir de nuestros datos.</p>
+</div>
+</div>
+</div>
 
 </div>
 <script src="egitbook/js/sols.js"></script>
