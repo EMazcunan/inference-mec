@@ -237,7 +237,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 probabilidad de ganar el coche cambiando de puerta</p>
 </div>
 <p>es mayor que <span class="math inline">\(1/3\)</span>, basándonos en los resultados de varias simulaciones del juego cambiando de puerta.</p>
-<p>Se realizaron <span class="math inline">\(66\)</span> simulaciones del juego cambiando de puerta y se ganó el coche en <span class="math inline">\(48\)</span> de ellas (obteniendo una cabra en las <span class="math inline">\(16\)</span> restantes).</p>
+<p>Se realizaron <span class="math inline">\(66\)</span> simulaciones del juego cambiando de puerta y se ganó el coche en <span class="math inline">\(48\)</span> de ellas (obteniendo una cabra en las <span class="math inline">\(18\)</span> restantes).</p>
 <div class="parts">
 <p><span class="item"> </span> Plantea el contraste de hipótesis para comparar <span class="math inline">\(p\)</span> con <span class="math inline">\(1/3\)</span> y completa el siguiente código para realizar el test binomial exacto para resolverlo (a nivel de signficación <span class="math inline">\(0.05\)</span>):</p>
 <pre><code>binom.test(
@@ -261,12 +261,12 @@ probabilidad de ganar el coche cambiando de puerta</p>
   \right.
 \]</span></p>
 <p>El código de <span class="textsf">R</span> para realizar el contraste planteado sería</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="problema-tipo-examen.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(</span>
-<span id="cb11-2"><a href="problema-tipo-examen.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">48</span>,</span>
-<span id="cb11-3"><a href="problema-tipo-examen.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">66</span>,</span>
-<span id="cb11-4"><a href="problema-tipo-examen.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">3</span>,</span>
-<span id="cb11-5"><a href="problema-tipo-examen.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span></span>
-<span id="cb11-6"><a href="problema-tipo-examen.html#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="problema-tipo-examen.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(</span>
+<span id="cb12-2"><a href="problema-tipo-examen.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">48</span>,</span>
+<span id="cb12-3"><a href="problema-tipo-examen.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">66</span>,</span>
+<span id="cb12-4"><a href="problema-tipo-examen.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">3</span>,</span>
+<span id="cb12-5"><a href="problema-tipo-examen.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span></span>
+<span id="cb12-6"><a href="problema-tipo-examen.html#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <p><span class="item"> </span> Al ejecutar el código del apartado anterior, con los valores adecuados para los argumentos, se obtiene la siguiente salida:</p>
 <pre class="egitbook-output"><code>

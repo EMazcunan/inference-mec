@@ -227,6 +227,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="conf-int" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">3</span> Intervalos de confianza<a href="conf-int.html#conf-int" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>En esta sección nos ocuparemos de la siguiente parte en la salida del comando <code class="sourceCode r"><span class="fu">binom.test</span>()</code> que ejecutamos en la sección anterior para resolver la primera parte el problema planteado en la introducción:</p>
+<div class="center">
+<pre><code>95 percent confidence interval:
+ 0.0000000  0.6801741</code></pre>
+</div>
 <p>Esta parte de la salida nos da <span class="math inline">\((0, 0.6801741)\)</span> como intervalo de confianza del <span class="math inline">\(95\%\)</span> para el parámetro <span class="math inline">\(p\)</span>, y responde a la segunda cuestión que planteamos al inicio de encontrar un conjunto de valores plausibles para <span class="math inline">\(p\)</span>. A continuación se explica cómo ha de interpretarse este intervalo de confianza y cómo se ha obtenido.</p>
 <p>Si la afirmación del jugador hubiera sido que su probabilidad de acierto es <span class="math inline">\(0.6\)</span> hubiéramos planteado el contraste de hipótesis:
 <span class="math display">\[
@@ -242,12 +246,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     P(X\le 28) = F(28) = \KeywordTok{pbinom}\NormalTok{(}\DecValTok{28}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{0.6}\NormalTok{)} =0.3299.
 \]</span>
 Puedes comprobarlo con el código</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="conf-int.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(</span>
-<span id="cb9-2"><a href="conf-int.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">28</span>,</span>
-<span id="cb9-3"><a href="conf-int.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">50</span>,</span>
-<span id="cb9-4"><a href="conf-int.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="fl">0.6</span>,</span>
-<span id="cb9-5"><a href="conf-int.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span></span>
-<span id="cb9-6"><a href="conf-int.html#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="conf-int.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(</span>
+<span id="cb10-2"><a href="conf-int.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">28</span>,</span>
+<span id="cb10-3"><a href="conf-int.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">50</span>,</span>
+<span id="cb10-4"><a href="conf-int.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="fl">0.6</span>,</span>
+<span id="cb10-5"><a href="conf-int.html#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span></span>
+<span id="cb10-6"><a href="conf-int.html#cb10-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Al ser el nuevo <span class="math inline">\(p\)</span>-valor 0.3299 mayor que <span class="math inline">\(\alpha = 0.05\)</span> no podemos asegurar, con una confianza del <span class="math inline">\(95\%\)</span>, que <span class="math inline">\(p&lt;0.6\)</span>. Por eso, el extremo superior del intervalo, 0.6801741, es superior a <span class="math inline">\(0.6\)</span>.</p>
 <p>El extremo superior de nuestro intervalo de confianza del <span class="math inline">\(95\%\)</span> es el mayor valor <span class="math inline">\(p_{0}\)</span> para el que el contraste de hipótesis
 <span class="math display">\[

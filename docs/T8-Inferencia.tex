@@ -467,7 +467,7 @@ donde hemos supuesto que \(X\sim Binom(50,0.75)\), es decir, hemos supuesto que 
 \hypertarget{conclusiuxf3n}{%
 \subsection{Conclusión}\label{conclusiuxf3n}}
 
-Recordemos que habíamos decidido adoptar una actitud conservadora, de manera que no acusaríamos al jugador de mentiroso a no ser que, en el supuesto de que diga la verdad, los datos obtenidos tuvieran una probabilidad inferior a \(\alpha=0.05\). La probabilidad obtenida ha sido \(0.002618\), mucho menor que nuestro ``umbral del credulidad'' o nivel de significación \(\alpha=0.05\). Así que nuestra conclusión es que rechazamos la afirmación del jugador en favor de nuestra hipótesis alternativa de que \(p<0.75\).
+Recordemos que habíamos decidido adoptar una actitud conservadora, de manera que no acusaríamos al jugador de mentiroso a no ser que, en el supuesto de que diga la verdad, los datos obtenidos tuvieran una probabilidad inferior a \(\alpha=0.05\). La probabilidad obtenida ha sido \(0.002618\), mucho menor que nuestro ``umbral de credulidad'' o nivel de significación \(\alpha=0.05\). Así que nuestra conclusión es que rechazamos la afirmación del jugador en favor de nuestra hipótesis alternativa de que \(p<0.75\).
 
 Ahora, nunca sabremos si nos hemos equivocado en nuestra decisión. Como hemos trabajado con un umbral de credulidad del \(5\%\), podríamos decir que tenemos una confianza del \(95\%\) en que nuestra decisión es correcta. Esto es así porque sólo corremos el riesgo de equivocarnos en el \(5\%\) de las ocasiones en que, siendo verdad la afirmación del jugador, la mala racha se deba al azar. Como se indicó en la introducción esta incertidumbre acompaña a cualquier conclusión de un procedimiento de inferencia estadística (figuras \ref{fig:dilbert} y \ref{fig:lie}).
 
@@ -529,11 +529,12 @@ Una analogía útil para entender la filosofía de un contraste de hipótesis es
 En esta sección nos ocuparemos de la siguiente parte en la salida del comando \VERB|\FunctionTok{binom.test}\NormalTok{()}| que ejecutamos en la sección anterior para resolver la primera parte el problema planteado en la introducción:
 
 \begin{center}
-    \ttfamily 
-    \begin{tabular}{l}
-    95 percent confidence interval: \\
-    \ 0.0000000  0.6801741
-    \end{tabular}
+
+\begin{verbatim}
+95 percent confidence interval:
+ 0.0000000  0.6801741
+\end{verbatim}
+
 \end{center}
 
 Esta parte de la salida nos da \((0, 0.6801741)\) como intervalo de confianza del \(95\%\) para el parámetro \(p\), y responde a la segunda cuestión que planteamos al inicio de encontrar un conjunto de valores plausibles para \(p\). A continuación se explica cómo ha de interpretarse este intervalo de confianza y cómo se ha obtenido.
@@ -619,7 +620,7 @@ probabilidad de ganar el coche cambiando de puerta
 
 es mayor que \(1/3\), basándonos en los resultados de varias simulaciones del juego cambiando de puerta.
 
-Se realizaron \(66\) simulaciones del juego cambiando de puerta y se ganó el coche en \(48\) de ellas (obteniendo una cabra en las \(16\) restantes).
+Se realizaron \(66\) simulaciones del juego cambiando de puerta y se ganó el coche en \(48\) de ellas (obteniendo una cabra en las \(18\) restantes).
 
 \begin{parts}
 
